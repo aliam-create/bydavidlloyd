@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>By David Lloyd — Living & Launchpad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cream:#FAF8F4;--charcoal:#1C1C1A;--warm:#6B6560;
+    --navy:#0D3349;--navy-mid:#1A4A64;
+    --orange:#F47920;--orange-light:#FEF0E6;--border:#E0D9CF;--white:#FFFFFF;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--charcoal);font-size:14px;line-height:1.6}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid var(--border);background:var(--white);position:sticky;top:0;z-index:100}
+  .nav-logos{display:flex;align-items:center;gap:20px}
+  .nav-divider{width:1px;height:20px;background:var(--border)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:11px;letter-spacing:.1em;color:var(--warm);text-transform:uppercase;text-decoration:none}
+  .nav-links a:hover{color:var(--charcoal)}
+  .nav-cta{background:var(--navy)!important;color:#FAF8F4!important;padding:8px 20px;border-radius:2px}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
+  .hero-left{padding:72px 52px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+  .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
+  h1{font-family:'Cormorant Garamond',serif;font-size:58px;line-height:1.05;font-weight:300;margin-bottom:24px;color:var(--navy)}
+  h1 em{font-style:italic;color:var(--orange)}
+  .hero-body{font-size:14px;line-height:1.8;color:var(--warm);max-width:340px;margin-bottom:32px}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-primary{background:var(--navy);color:#FAF8F4;padding:13px 28px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
+  .btn-ghost{background:transparent;color:var(--navy);padding:13px 28px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid #C8BFB0;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
+  .hero-right{display:grid;grid-template-rows:1fr 1fr}
+  .hero-panel{position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:28px 32px;min-height:250px}
+  .hero-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-overlay{position:absolute;inset:0;z-index:1}
+  .panel-living-overlay{background:linear-gradient(135deg,rgba(13,51,73,0.75) 0%,rgba(13,51,73,0.3) 100%)}
+  .panel-launch-overlay{background:linear-gradient(135deg,rgba(244,121,32,0.82) 0%,rgba(244,121,32,0.38) 100%)}
+  .panel-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:2px;padding:12px 18px;position:relative;z-index:2;backdrop-filter:blur(4px)}
+  .panel-badge p{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:4px}
+  .panel-badge strong{font-size:17px;font-family:'Cormorant Garamond',serif;color:#FAF8F4;font-weight:300}
+  .panel-label{position:absolute;top:24px;right:24px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);z-index:2}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--white)}
+  .stat{padding:22px 28px;border-right:1px solid var(--border)}
+  .stat:last-child{border-right:none}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1;color:var(--navy)}
+  .stat-num span{color:var(--orange)}
+  .stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);margin-top:5px}
+  .brands{display:grid;grid-template-columns:1fr 1fr}
+  .brand-card{padding:48px 40px;position:relative;overflow:hidden}
+  .brand-living{background:var(--navy)}
+  .brand-launch{background:var(--orange);border-left:1px solid rgba(255,255,255,.1)}
+  .brand-tag{display:inline-block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(255,255,255,.25);border-radius:1px;color:rgba(255,255,255,.6);margin-bottom:20px}
+  .brand-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#FAF8F4;line-height:1.15;margin-bottom:8px}
+  .brand-sub{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
+  .brand-desc{font-size:13px;line-height:1.75;color:rgba(255,255,255,.72);margin-bottom:24px;max-width:280px}
+  .brand-feats{list-style:none;margin-bottom:26px}
+  .brand-feats li{font-size:12px;color:rgba(255,255,255,.6);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px}
+  .brand-feats li::before{content:'';width:14px;height:1px;background:rgba(255,255,255,.5);flex-shrink:0}
+  .brand-cta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FAF8F4;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;text-decoration:none}
+  .brand-price{position:absolute;top:44px;right:36px;text-align:right}
+  .brand-price p{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px}
+  .brand-price strong{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#FAF8F4}
+  .brand-watermark{position:absolute;bottom:-20px;right:-10px;opacity:.05;font-family:'Cormorant Garamond',serif;font-size:130px;font-weight:300;color:#fff;line-height:1;user-select:none}
+  .pillars{padding:60px 40px;background:var(--cream)}
+  .pillars-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+  .sec-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+  h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;line-height:1.15;color:var(--navy)}
+  h2 em{font-style:italic;color:var(--orange)}
+  .pillars-intro{font-size:13px;color:var(--warm);line-height:1.75;max-width:260px;text-align:right}
+  .pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+  .pillar{background:var(--white);padding:28px 24px}
+  .pillar-icon{width:36px;height:36px;border-radius:50%;background:var(--orange-light);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .pillar-icon svg{width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .pillar-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;margin-bottom:10px;color:var(--navy)}
+  .pillar-desc{font-size:12px;line-height:1.7;color:var(--warm)}
+  .feature-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+  .feature-txt{padding:52px 44px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border);background:var(--white)}
+  .feature-row.reverse .feature-txt{border-right:none;border-left:1px solid var(--border)}
+  .feature-row.reverse .feature-img{order:-1}
+  .feature-img{position:relative;overflow:hidden;min-height:400px}
+  .feature-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .feature-body{font-size:13px;line-height:1.8;color:var(--warm);margin:12px 0 24px;max-width:320px}
+  .feature-list{list-style:none}
+  .feature-list li{font-size:12px;color:var(--warm);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+  .feature-list li::before{content:'';width:14px;height:1px;background:var(--orange);flex-shrink:0}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);height:260px;border-top:1px solid var(--border)}
+  .gallery-item{overflow:hidden;position:relative;cursor:pointer}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block}
+  .gallery-item:hover img{transform:scale(1.06)}
+  .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,51,73,0.5),transparent 60%)}
+  .gallery-label{position:absolute;bottom:14px;left:16px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#FAF8F4;z-index:2}
+  .process{padding:60px 40px;background:var(--cream)}
+  .process-sub{font-size:13px;color:var(--warm);margin:8px 0 32px}
+  .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+  .step{background:var(--white);padding:26px 22px;position:relative}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--border);position:absolute;top:14px;right:16px;line-height:1}
+  .step-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+  .step-title{font-size:14px;font-weight:500;margin-bottom:8px;color:var(--navy)}
+  .step-desc{font-size:12px;line-height:1.65;color:var(--warm)}
+  .testimonial{margin:0 40px 60px;background:var(--navy);border-radius:4px;padding:52px 60px;display:grid;grid-template-columns:1fr 140px;gap:40px;align-items:center}
+  .tq{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;color:#FAF8F4;line-height:1.4;margin-bottom:20px}
+  .ta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+  .ta span{color:var(--orange)}
+  .t-num{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:#FAF8F4;line-height:1;text-align:center}
+  .t-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:6px;text-align:center;line-height:1.6}
+  .contact{padding:60px 40px;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;background:var(--cream)}
+  .contact-body{font-size:13px;line-height:1.8;color:var(--warm);margin:12px 0 22px}
+  .contact-info p{font-size:12px;color:var(--warm);margin-bottom:6px}
+  .contact-info a{color:var(--navy);border-bottom:1px solid var(--border);text-decoration:none}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .form-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+  .form-field label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--warm)}
+  .form-field input,.form-field select,.form-field textarea{background:var(--white);border:1px solid #D8D0C5;border-radius:2px;padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--charcoal);outline:none;width:100%}
+  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--navy)}
+  .form-field textarea{height:84px;resize:vertical}
+  .form-submit{width:100%;background:var(--navy);color:#FAF8F4;padding:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif}
+  footer{border-top:1px solid var(--border);padding:28px 40px;display:flex;justify-content:space-between;align-items:center;background:var(--white)}
+  .footer-logos{display:flex;align-items:center;gap:16px}
+  .footer-div{width:1px;height:16px;background:var(--border)}
+  .footer-links{display:flex;gap:24px}
+  .footer-links a{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--warm);text-decoration:none}
+  .footer-copy{font-size:10px;color:#B0A898}
+  @media(max-width:768px){
+    nav{padding:14px 20px}.nav-links{display:none}
+    .hero{grid-template-columns:1fr}.hero-left{padding:40px 24px}
+    h1{font-size:40px}.hero-right{grid-template-rows:220px 220px}
+    .stats{grid-template-columns:1fr 1fr}.stat{border-bottom:1px solid var(--border)}
+    .brands{grid-template-columns:1fr}
+    .pillar-grid{grid-template-columns:1fr 1fr}.pillars{padding:40px 20px}
+    .pillars-head{flex-direction:column;gap:16px}.pillars-intro{text-align:left;max-width:100%}
+    .feature-row{grid-template-columns:1fr}.feature-row.reverse .feature-img{order:0}
+    .feature-txt{border-right:none!important;border-left:none!important;padding:36px 24px}
+    .feature-img{min-height:260px}
+    .gallery{grid-template-columns:1fr 1fr;height:320px}
+    .process{padding:40px 20px}.process-steps{grid-template-columns:1fr 1fr}
+    .testimonial{margin:0 20px 40px;padding:36px 28px;grid-template-columns:1fr}
+    .contact{padding:40px 20px;grid-template-columns:1fr}
+    footer{flex-direction:column;gap:16px;text-align:center;padding:24px 20px}
+    .form-row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logos">
+    <svg height="28" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#0D3349" letter-spacing="-0.5">living</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="8" font-weight="400" fill="#0D3349" letter-spacing="2">BY DAVID LLOYD</text>
+    </svg>
+    <div class="nav-divider"></div>
+    <svg height="22" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#F47920" letter-spacing="-0.5">launchpad</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="7" font-weight="400" fill="#F47920" letter-spacing="2">CO-LIVING BY DAVID LLOYD</text>
+    </svg>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#living">Living</a>
+    <a href="#launchpad">Launchpad</a>
+    <a href="#investors">Investors</a>
+    <a href="#contact" class="nav-cta">Enquire</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow">Managed living — redefined</p>
+    <h1>Where you live<br>shapes who you<br><em>become.</em></h1>
+    <p class="hero-body">By David Lloyd creates managed buildings that feel genuinely aspirational — combining wellness, community and smart design so residents thrive, not just reside.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn-primary">Find your home</a>
+      <a href="#investors" class="btn-ghost">For investors</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-panel">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" alt="Luxury apartment interior">
+      <div class="hero-overlay panel-living-overlay"></div>
+      <span class="panel-label">Living by David Lloyd</span>
+      <div class="panel-badge"><p>Now available</p><strong>Premium 1 &amp; 2 bed homes</strong></div>
+    </div>
+    <div class="hero-panel">
+      <img src="https://images.unsplash.com/photo-1631049552240-59c37f38802b?w=800&q=80" alt="Modern co-living communal lounge">
+      <div class="hero-overlay panel-launch-overlay"></div>
+      <span class="panel-label">Launchpad by David Lloyd</span>
+      <div class="panel-badge"><p>Launching 2027</p><strong>Studio co-living spaces</strong></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">2<span>+</span></div><div class="stat-label">Active developments</div></div>
+  <div class="stat"><div class="stat-num" style="color:var(--orange)">2027</div><div class="stat-label">First completions</div></div>
+  <div class="stat"><div class="stat-num">2<span> brands</span></div><div class="stat-label">Living & Launchpad</div></div>
+  <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Managed, not just rented</div></div>
+</div>
+
+<div id="living" class="brands">
+  <div class="brand-card brand-living">
+    <div class="brand-price"><p>From</p><strong>£1,800 pcm</strong></div>
+    <div class="brand-tag">Premium residential</div>
+    <div class="brand-name">Living by<br>David Lloyd</div>
+    <div class="brand-sub">1 &amp; 2 bedroom apartments</div>
+    <p class="brand-desc">Designed for corporate professionals and smaller families seeking a premium, fully managed home with genuine community built in.</p>
+    <ul class="brand-feats">
+      <li>High-specification gym &amp; wellness suite</li>
+      <li>Resident lounge &amp; co-working space</li>
+      <li>Rooftop terrace with city views</li>
+      <li>Resident café &amp; social programme</li>
+      <li>24/7 concierge &amp; building management</li>
+      <li>Pet-friendly homes available</li>
+    </ul>
+    <a href="#contact" class="brand-cta">Explore Living →</a>
+    <div class="brand-watermark">L</div>
+  </div>
+  <div id="launchpad" class="brand-card brand-launch">
+    <div class="brand-price"><p>From</p><strong>£950 pcm</strong></div>
+    <div class="brand-tag">Co-living · Launching 2027</div>
+    <div class="brand-name">Launchpad by<br>David Lloyd</div>
+    <div class="brand-sub">High-efficiency studio co-living</div>
+    <p class="brand-desc">Built for digital nomads and early-career professionals who want more than a room — a real community, a proper workspace, and a base to build from.</p>
+    <ul class="brand-feats">
+      <li>Private studio with smart storage</li>
+      <li>Shared kitchen, dining &amp; social spaces</li>
+      <li>Creator lab, podcast room &amp; content studio</li>
+      <li>Dedicated co-working &amp; meeting pods</li>
+      <li>All bills included, flexible terms</li>
+      <li>Events, networks &amp; community app</li>
+    </ul>
+    <a href="#contact" class="brand-cta">Register interest →</a>
+    <div class="brand-watermark">LP</div>
+  </div>
+</div>
+
+<section id="about" class="pillars">
+  <div class="pillars-head">
+    <div>
+      <p class="sec-label">Our approach</p>
+      <h2>Built around the<br>way you <em>actually</em> live</h2>
+    </div>
+    <p class="pillars-intro">Every decision — from design to service — is made to improve the quality of your daily life, not to fill a spec sheet.</p>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <h3 class="pillar-name">Relevant design</h3>
+      <p class="pillar-desc">Every building shaped around its residents and neighbourhood. No templates — spaces that help you create, focus, and grow.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h3 class="pillar-name">Real community</h3>
+      <p class="pillar-desc">Shared spaces, curated events and digital tools make it easy to meet people, collaborate, and feel at home fast.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+      <h3 class="pillar-name">Smart technology</h3>
+      <p class="pillar-desc">AI-powered building systems and seamless digital access mean less time on problems, more time living your life.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <h3 class="pillar-name">Sustainable living</h3>
+      <p class="pillar-desc">From construction to daily energy use, sustainability is built in — not bolted on. Live lightly without losing comfort.</p>
+    </div>
+  </div>
+</section>
+
+<div class="feature-row">
+  <div class="feature-txt">
+    <p class="sec-label">Living by David Lloyd</p>
+    <h2>Premium homes,<br><em>fully managed.</em></h2>
+    <p class="feature-body">1 and 2 bedroom apartments designed for corporate professionals and smaller families. Every detail considered so you can focus on what matters.</p>
+    <ul class="feature-list">
+      <li>High-spec gym &amp; wellness suite on-site</li>
+      <li>Rooftop terrace with panoramic views</li>
+      <li>Resident café open 7 days</li>
+      <li>24/7 building management &amp; support</li>
+    </ul>
+  </div>
+  <div class="feature-img">
+    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&q=85" alt="Premium apartment living room">
+  </div>
+</div>
+
+<div class="feature-row reverse" style="border-bottom:1px solid var(--border)">
+  <div class="feature-img">
+    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=85" alt="Modern studio flat interior">
+  </div>
+  <div class="feature-txt" style="border-right:none;border-left:1px solid var(--border)">
+    <p class="sec-label">Launchpad by David Lloyd</p>
+    <h2>Your base to<br><em>build from.</em></h2>
+    <p class="feature-body">High-efficiency studio co-living for digital nomads and early-career professionals. More than just a room — a community, a workspace, and a genuine home base launching in 2027.</p>
+    <ul class="feature-list">
+      <li>Private studio with smart storage</li>
+      <li>Creator lab &amp; podcast room</li>
+      <li>Co-working pods &amp; meeting spaces</li>
+      <li>All bills included, flexible terms</li>
+    </ul>
+  </div>
+</div>
+
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=500&q=80" alt="Modern compact bedroom">
+    <span class="gallery-label">Bedroom</span>
+  </div>
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=80" alt="Modern kitchen">
+    <span class="gallery-label">Kitchen</span>
+  </div>
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=80" alt="Gym and wellness">
+    <span class="gallery-label">Wellness</span>
+  </div>
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=80" alt="Community">
+    <span class="gallery-label">Community</span>
+  </div>
+</div>
+
+<section class="process">
+  <p class="sec-label">How it works</p>
+  <h2 style="font-size:32px;margin-bottom:6px">From enquiry to move-in</h2>
+  <p class="process-sub">A straightforward process — we handle the complexity so you don't have to.</p>
+  <div class="process-steps">
+    <div class="step"><span class="step-num">01</span><p class="step-label">Enquire</p><h4 class="step-title">Tell us what you need</h4><p class="step-desc">Fill in a short form or email us. We'll match you to the right building within 24 hours.</p></div>
+    <div class="step"><span class="step-num">02</span><p class="step-label">View</p><h4 class="step-title">See the space</h4><p class="step-desc">Book a viewing at a time that suits you. Virtual tours available for those not yet local.</p></div>
+    <div class="step"><span class="step-num">03</span><p class="step-label">Reserve</p><h4 class="step-title">Secure your home</h4><p class="step-desc">A holding deposit secures your unit while contracts are prepared. Transparent terms.</p></div>
+    <div class="step"><span class="step-num">04</span><p class="step-label">Move in</p><h4 class="step-title">Arrive and feel at home</h4><p class="step-desc">A dedicated welcome team meets you on day one and introduces you to your new community.</p></div>
+  </div>
+</section>
+
+<div class="testimonial">
+  <div>
+    <p class="tq">"The difference isn't just the design — it's that someone actually thought about what it feels like to live here, not just what it looks like on a brochure."</p>
+    <p class="ta">Early resident — <span>Living by David Lloyd pilot</span></p>
+  </div>
+  <div>
+    <div class="t-num">9.2</div>
+    <div class="t-label">Resident satisfaction score (out of 10)</div>
+  </div>
+</div>
+
+<section id="contact" class="contact">
+  <div>
+    <p class="sec-label">Get in touch</p>
+    <h2>Ready to find<br>your <em>ideal</em> home?</h2>
+    <p class="contact-body">Whether you're a prospective resident, a building owner looking for a management partner, or an investor exploring opportunities — we'd love to hear from you.</p>
+    <div class="contact-info">
+      <p>Email: <a href="mailto:info@bydavidlloyd.com">info@bydavidlloyd.com</a></p>
+      <p style="margin-top:6px;font-size:11px;color:#B0A898">We typically respond within one working day.</p>
+    </div>
+  </div>
+  <div>
+    <div class="form-row">
+      <div class="form-field"><label>First name</label><input type="text" placeholder="James"></div>
+      <div class="form-field"><label>Last name</label><input type="text" placeholder="Smith"></div>
+    </div>
+    <div class="form-field"><label>Email address</label><input type="email" placeholder="james@email.com"></div>
+    <div class="form-field">
+      <label>I am interested in</label>
+      <select>
+        <option>Living by David Lloyd (1–2 bed apartments)</option>
+        <option>Launchpad by David Lloyd (co-living)</option>
+        <option>Building management / partnership</option>
+        <option>Investment opportunities</option>
+      </select>
+    </div>
+    <div class="form-field"><label>Message (optional)</label><textarea placeholder="Tell us a bit about what you're looking for..."></textarea></div>
+    <button class="form-submit" type="button">Send enquiry</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logos">
+    <svg height="20" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#0D3349" letter-spacing="-0.5">living</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="8" font-weight="400" fill="#0D3349" letter-spacing="2">BY DAVID LLOYD</text>
+    </svg>
+    <div class="footer-div"></div>
+    <svg height="16" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#F47920" letter-spacing="-0.5">launchpad</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="7" font-weight="400" fill="#F47920" letter-spacing="2">CO-LIVING BY DAVID LLOYD</text>
+    </svg>
+  </div>
+  <div class="footer-links">
+    <a href="/privacy-policy">Privacy policy</a>
+    <a href="/terms">Terms</a>
+    <a href="#investors">Investors</a>
+    <a href="/press">Press</a>
+  </div>
+  <p class="footer-copy">© 2026 By David Lloyd. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About David Lloyd — By David Lloyd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cream:#FAF8F4;--charcoal:#1C1C1A;--warm:#6B6560;
+    --navy:#0D3349;--navy-mid:#1A4A64;
+    --orange:#F47920;--orange-light:#FEF0E6;--border:#E0D9CF;--white:#FFFFFF;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--charcoal);font-size:14px;line-height:1.6}
+
+  /* NAV */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid var(--border);background:var(--white);position:sticky;top:0;z-index:100}
+  .nav-logos{display:flex;align-items:center;gap:20px}
+  .nav-divider{width:1px;height:20px;background:var(--border)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:11px;letter-spacing:.1em;color:var(--warm);text-transform:uppercase;text-decoration:none}
+  .nav-links a:hover{color:var(--charcoal)}
+  .nav-cta{background:var(--navy)!important;color:#FAF8F4!important;padding:8px 20px;border-radius:2px}
+
+  /* HERO */
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
+  .hero-left{padding:72px 52px;display:flex;flex-direction:column;justify-content:center;background:var(--navy)}
+  .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
+  h1{font-family:'Cormorant Garamond',serif;font-size:56px;line-height:1.05;font-weight:300;color:#FAF8F4;margin-bottom:20px}
+  h1 em{font-style:italic;color:var(--orange)}
+  .hero-intro{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);max-width:380px}
+  .hero-right{position:relative;overflow:hidden;min-height:520px}
+  .hero-right img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,51,73,0.3),transparent)}
+
+  /* TIMELINE */
+  .timeline{padding:72px 40px;background:var(--white)}
+  .timeline-header{margin-bottom:56px}
+  .sec-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+  h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;line-height:1.15;color:var(--navy)}
+  h2 em{font-style:italic;color:var(--orange)}
+  .timeline-items{display:grid;gap:0}
+  .tl-item{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--border);align-items:start}
+  .tl-item:last-child{border-bottom:none}
+  .tl-year{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--orange);line-height:1;padding-top:4px}
+  .tl-content h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--navy);margin-bottom:10px}
+  .tl-content p{font-size:13px;line-height:1.8;color:var(--warm)}
+
+  /* QUOTE SECTION */
+  .quote-section{background:var(--navy);padding:72px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .quote-img{position:relative;border-radius:3px;overflow:hidden;height:420px}
+  .quote-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .quote-img-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,51,73,0.9),transparent);padding:24px 20px}
+  .quote-img-caption p{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .quote-img-caption strong{font-size:16px;font-family:'Cormorant Garamond',serif;color:#FAF8F4;font-weight:300;display:block;margin-top:4px}
+  .quote-text{display:flex;flex-direction:column;justify-content:center}
+  .quote-mark{font-family:'Cormorant Garamond',serif;font-size:80px;color:var(--orange);line-height:.8;margin-bottom:8px;opacity:.6}
+  .quote-body{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;font-style:italic;color:#FAF8F4;line-height:1.45;margin-bottom:28px}
+  .quote-attr{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+  .quote-attr span{color:var(--orange)}
+
+  /* STATS ROW */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--cream)}
+  .stat{padding:32px 28px;border-right:1px solid var(--border);text-align:center}
+  .stat:last-child{border-right:none}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;line-height:1;color:var(--navy)}
+  .stat-num span{color:var(--orange)}
+  .stat-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);margin-top:6px}
+
+  /* VISION SECTION */
+  .vision{padding:72px 40px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;background:var(--cream)}
+  .vision-left h2{margin-bottom:20px}
+  .vision-left p{font-size:14px;line-height:1.85;color:var(--warm);margin-bottom:16px}
+  .vision-right{padding-top:8px}
+  .vision-card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:28px;margin-bottom:16px}
+  .vision-card:last-child{margin-bottom:0}
+  .vision-card-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+  .vision-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--navy);margin-bottom:8px}
+  .vision-card p{font-size:12px;line-height:1.7;color:var(--warm)}
+
+  /* CTA */
+  .cta{background:var(--orange);padding:60px 40px;display:flex;justify-content:space-between;align-items:center;gap:32px}
+  .cta-text h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#FAF8F4;margin-bottom:8px}
+  .cta-text p{font-size:13px;color:rgba(255,255,255,.8)}
+  .cta-btn{background:#FAF8F4;color:var(--orange);padding:14px 32px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;white-space:nowrap;font-weight:500}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:28px 40px;display:flex;justify-content:space-between;align-items:center;background:var(--white)}
+  .footer-logos{display:flex;align-items:center;gap:16px}
+  .footer-div{width:1px;height:16px;background:var(--border)}
+  .footer-links{display:flex;gap:24px}
+  .footer-links a{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--warm);text-decoration:none}
+  .footer-links a:hover{color:var(--charcoal)}
+  .footer-copy{font-size:10px;color:#B0A898}
+
+  @media(max-width:768px){
+    nav{padding:14px 20px}.nav-links{display:none}
+    .hero{grid-template-columns:1fr}.hero-left{padding:48px 24px}
+    h1{font-size:40px}.hero-right{min-height:320px}
+    .timeline{padding:48px 24px}
+    .tl-item{grid-template-columns:80px 1fr;gap:20px}
+    .tl-year{font-size:28px}
+    .quote-section{grid-template-columns:1fr;padding:48px 24px;gap:36px}
+    .quote-img{height:300px}
+    .stats{grid-template-columns:1fr 1fr}
+    .stat{border-bottom:1px solid var(--border)}
+    .vision{grid-template-columns:1fr;padding:48px 24px;gap:36px}
+    .cta{flex-direction:column;padding:48px 24px;text-align:center}
+    footer{flex-direction:column;gap:16px;text-align:center;padding:24px 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logos">
+    <svg height="28" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#0D3349" letter-spacing="-0.5">living</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="8" font-weight="400" fill="#0D3349" letter-spacing="2">BY DAVID LLOYD</text>
+    </svg>
+    <div class="nav-divider"></div>
+    <svg height="22" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#F47920" letter-spacing="-0.5">launchpad</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="7" font-weight="400" fill="#F47920" letter-spacing="2">CO-LIVING BY DAVID LLOYD</text>
+    </svg>
+  </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#living">Living</a>
+    <a href="/#launchpad">Launchpad</a>
+    <a href="/#investors">Investors</a>
+    <a href="/#contact" class="nav-cta">Enquire</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow">The man behind the brand</p>
+    <h1>A life built on<br><em>ambition</em><br>and community.</h1>
+    <p class="hero-intro">From Wimbledon to £200 million leisure empire — David Lloyd has spent over five decades building spaces where people can be their best. Now he's turning that vision to where people live.</p>
+  </div>
+  <div class="hero-right">
+    <img src="david-lloyd.jpg" alt="David Lloyd">
+    <div class="hero-overlay"></div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="timeline-header">
+    <p class="sec-label">The journey</p>
+    <h2>From the court to the<br><em>boardroom and beyond</em></h2>
+  </div>
+  <div class="timeline-items">
+
+    <div class="tl-item">
+      <div class="tl-year">1948</div>
+      <div class="tl-content">
+        <h3>Born to play</h3>
+        <p>David Alan Lloyd was born on 3 January 1948 in Leigh-on-Sea, Essex. Growing up in Westcliff-on-Sea near Southend, he and his brothers Tony and John began playing tennis at Westcliff Hard LTC, where their parents were members. It was the beginning of a lifelong relationship with sport.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">1965</div>
+      <div class="tl-content">
+        <h3>A champion in the making</h3>
+        <p>At just 17, David won both the singles and doubles titles at the British Junior Championships held at Wimbledon — announcing himself as one of the most promising young players in the country. The following year he was runner-up in the junior singles, losing the final to future rugby legend J.P.R. Williams.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">1970s</div>
+      <div class="tl-content">
+        <h3>Davis Cup glory</h3>
+        <p>David became one of Britain's most decorated tennis players of the era. He was a member of the Great Britain Davis Cup squad from 1972 to 1980, and in 1978 was part of the first British team to reach the Davis Cup final since 1937 — a historic achievement for British tennis. In 1976, he and his brother John won a doubles title in London together.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">1981</div>
+      <div class="tl-content">
+        <h3>Retiring from the tour</h3>
+        <p>David retired from professional tennis having reached a career-high singles ranking of No. 128 in the world. But far from stepping back, his retirement marked the beginning of his most ambitious chapter yet. Following a spell coaching at a tennis club in Canada, he returned to Britain with a bold new vision.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">1982</div>
+      <div class="tl-content">
+        <h3>Building an empire</h3>
+        <p>David founded David Lloyd Leisure, opening his first club in Heston, near Hounslow in west London. The concept was simple but revolutionary for its time — a premium health and tennis club that put community and quality at its heart. It was the same ethos he had lived by on the court, now applied to everyday life.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">1992</div>
+      <div class="tl-content">
+        <h3>Floated on the London Stock Exchange</h3>
+        <p>By 1992, David Lloyd Leisure was a household name, and the business was floated on the London Stock Exchange. Three years later, with 18 clubs across the country, Whitbread Plc acquired the business for a reported £200 million — one of the landmark leisure deals of the decade. David remained as managing director until 1996.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">1995</div>
+      <div class="tl-content">
+        <h3>Coaching Britain's best</h3>
+        <p>Alongside his business ventures, David was appointed British Davis Cup captain in 1995 and went on to coach Tim Henman — one of British tennis's most beloved figures — demonstrating that his passion for the sport never dimmed.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2007</div>
+      <div class="tl-content">
+        <h3>Next Generation and a £925 million deal</h3>
+        <p>David, together with his son Scott, created Next Generation fitness clubs — a new premium fitness concept. In 2007, London & Regional Properties, in partnership with Bank of Scotland, acquired David Lloyd Leisure from Whitbread and incorporated Next Generation into the group in a deal worth £925 million, cementing David's legacy as one of Britain's great leisure entrepreneurs.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2010s</div>
+      <div class="tl-content">
+        <h3>Expanding internationally</h3>
+        <p>David developed the acclaimed Sugar Hill Resort in Barbados, followed by involvement in a luxury estate in Phuket, Thailand, and the development of a villa near Marbella, Spain. His eye for quality environments and his instinct for what people want from a place to call home began to shape his next great vision.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">Now</div>
+      <div class="tl-content">
+        <h3>A new kind of home</h3>
+        <p>Today, David Lloyd is channelling everything he has learned — about community, wellness, design and what makes people thrive — into his most personal project yet. By David Lloyd is a new generation of managed residential buildings, bringing the same premium standards he built his name on to the places people actually live. Two brands, one vision: homes that inspire.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div class="quote-img">
+    <img src="david-lloyd.jpg" alt="David Lloyd">
+    <div class="quote-img-caption">
+      <p>Founder</p>
+      <strong>David Lloyd</strong>
+    </div>
+  </div>
+  <div class="quote-text">
+    <div class="quote-mark">"</div>
+    <p class="quote-body">I've spent my life building places where people can be their very best — on the court, in the gym, and now in their homes. The principles are exactly the same: quality, community, and an environment that genuinely supports the way you want to live.</p>
+    <p class="quote-attr"><span>David Lloyd</span> — Founder, By David Lloyd</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">£925<span>m</span></div>
+    <div class="stat-label">Value of David Lloyd Leisure exit</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">89<span>+</span></div>
+    <div class="stat-label">Clubs built across UK & Europe</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">440<span>k</span></div>
+    <div class="stat-label">Members at peak of leisure business</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">40<span>+</span></div>
+    <div class="stat-label">Years building premium communities</div>
+  </div>
+</div>
+
+<!-- VISION -->
+<section class="vision">
+  <div class="vision-left">
+    <p class="sec-label">The vision</p>
+    <h2>The same principles.<br><em>A new chapter.</em></h2>
+    <p>David's career has always been guided by a simple belief: the environment you're in shapes who you become. He saw it in sport — players who trained in the right facilities, surrounded by the right people, performed better. He proved it in business — members of his clubs didn't just get fitter, they built friendships, networks and habits that changed their lives.</p>
+    <p>By David Lloyd applies that same thinking to residential living. Not just a roof over your head, but a building designed to help you thrive — with the right spaces, the right community, and the right level of care built in from day one.</p>
+    <p>It is the most personal project of David's career, and the most ambitious. And it is only just beginning.</p>
+  </div>
+  <div class="vision-right">
+    <div class="vision-card">
+      <p class="vision-card-label">Living by David Lloyd</p>
+      <h3>Premium 1 & 2 bed apartments</h3>
+      <p>Fully managed homes for corporate professionals and smaller families. High-specification throughout, with gym, co-working, rooftop terrace, café and 24/7 concierge.</p>
+    </div>
+    <div class="vision-card">
+      <p class="vision-card-label">Launchpad by David Lloyd</p>
+      <h3>Studio co-living spaces</h3>
+      <p>High-efficiency studios for digital nomads and early-career professionals. A proper workspace, a community, and a base to build from — launching 2027.</p>
+    </div>
+    <div class="vision-card">
+      <p class="vision-card-label">For investors</p>
+      <h3>A proven track record</h3>
+      <p>Backed by decades of experience building and scaling premium leisure and residential businesses. Sustainable occupancy, operational excellence and long-term value.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-text">
+    <h2>Interested in being part of the story?</h2>
+    <p>Whether you're looking for a home, a building to manage, or an investment opportunity — we'd love to hear from you.</p>
+  </div>
+  <a href="/#contact" class="cta-btn">Get in touch</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logos">
+    <svg height="20" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#0D3349" letter-spacing="-0.5">living</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="8" font-weight="400" fill="#0D3349" letter-spacing="2">BY DAVID LLOYD</text>
+    </svg>
+    <div class="footer-div"></div>
+    <svg height="16" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="28" font-family="'DM Sans',sans-serif" font-size="28" font-weight="600" fill="#F47920" letter-spacing="-0.5">launchpad</text>
+      <text x="2" y="38" font-family="'DM Sans',sans-serif" font-size="7" font-weight="400" fill="#F47920" letter-spacing="2">CO-LIVING BY DAVID LLOYD</text>
+    </svg>
+  </div>
+  <div class="footer-links">
+    <a href="/privacy-policy">Privacy policy</a>
+    <a href="/terms">Terms</a>
+    <a href="/#investors">Investors</a>
+    <a href="/press">Press</a>
+  </div>
+  <p class="footer-copy">© 2026 By David Lloyd. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
